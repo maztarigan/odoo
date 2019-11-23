@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="bootcamp_event_tree_view" model="ir.ui.view">
+        <field name="inherit_id" ref="event.view_event_tree"/>
+        <field name="model">event.event</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="price"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="bootcamp_event_form_view" model="ir.ui.view">
+        <field name="inherit_id" ref="event.view_event_form"/>
+        <field name="model">event.event</field>
+        <field name="arch" type="xml">
+            <field name="date_tz" position="after">
+                <field name="price"/>
+                <field name="description"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_event_view_bootcamp">
+        <field name="name">Bootcamp</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">event.event</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="event.view_event_search"/>
+        <field name="context">{"default_is_bootcamp": True}</field>
+        <field name="domain">[('is_bootcamp', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new event
+            </p><p>
+            Schedule and organize your events efficiently:        track registrations and participations, automate the confirmation emails, sell tickets, etc.        </p>
+        </field>
+    </record>
+    <menuitem name="Bootcamp" action="action_event_view_bootcamp" id="menu_bootcamp_event_view"/>
+
+</odoo>
